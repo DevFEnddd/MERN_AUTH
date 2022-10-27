@@ -9,23 +9,15 @@
 // })
 const express = require("express");
 const connectMongo = require("./config/mongoose");
+const indexRoute = require("./Router/index.route.js");
 const port = 3000;
 
 connectMongo();
 
-
-
 const app = express();
 
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
-app.get("/api/auth/login", function (req, res) {
-  res.send("Login");
-});
-app.get("/api/auth/register", function (req, res) {
-  res.send("register");
-});
+// middleware router
+app.use("/", indexRoute);
 
 app.listen(port, () => {
   console.log(`server listen to port ${port}`);
